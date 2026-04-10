@@ -1,0 +1,15 @@
+namespace: ecommerce
+
+services:
+  - name: frontend
+    image: hashicorp/http-echo:latest
+    port: 5678
+    args: ["-text=Welcome to the E-Commerce Storefront!"]
+  - name: productcatalog
+    image: hashicorp/http-echo:latest
+    port: 5678
+    args: ["-text=Product Catalog Service: 100 items available"]
+  - name: cart
+    image: hashicorp/http-echo:latest
+    port: 5678
+    args: ["-text=Cart Service: Your cart is currently empty"]

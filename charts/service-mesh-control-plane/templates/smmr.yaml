@@ -1,0 +1,10 @@
+apiVersion: maistra.io/v1
+kind: ServiceMeshMemberRoll
+metadata:
+  name: {{ .Values.memberRoll.name }}
+  namespace: {{ .Values.controlPlane.namespace }}
+spec:
+  members:
+{{- range .Values.memberRoll.members }}
+    - {{ . }}
+{{- end }}

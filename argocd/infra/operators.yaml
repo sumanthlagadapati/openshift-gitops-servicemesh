@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform-operators
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/YOUR_GIT_USERNAME/openshift-gitops-servicemesh.git'
+    targetRevision: HEAD
+    path: charts/platform-operators
+    helm:
+      valueFiles:
+      - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: openshift-operators
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ecommerce-app
+description: A microservices-based e-commerce application demonstrating Service Mesh
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
