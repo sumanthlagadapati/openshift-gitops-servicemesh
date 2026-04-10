@@ -3,9 +3,9 @@ kind: Namespace
 metadata:
   name: {{ .Values.namespace }}
   labels:
-    # Important: this label varies slightly by Istio version, but SMMR usually handles injection in OCP.
-    # We still add a tracking label.
+    istio-injection: enabled
     app: ecommerce
+
 ---
 {{- range .Values.services }}
 apiVersion: apps/v1

@@ -1,9 +1,0 @@
-controlPlane:
-  name: basic
-  namespace: istio-system
-  version: v2.4
-
-memberRoll:
-  name: default
-  members:
-    - ecommerce

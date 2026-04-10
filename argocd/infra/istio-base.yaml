@@ -1,22 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ecommerce-app
+  name: istio-base
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/sumanthlagadapati/openshift-gitops-servicemesh.git'
-    targetRevision: HEAD
-    path: charts/ecommerce-app
-    helm:
-      valueFiles:
-      - values.yaml
+    repoURL: 'https://istio-release.storage.googleapis.com/charts'
+    chart: base
+    targetRevision: 1.20.0
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: ecommerce
+    namespace: istio-system
   syncPolicy:
     automated:
       prune: true

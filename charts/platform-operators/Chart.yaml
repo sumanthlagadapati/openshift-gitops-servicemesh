@@ -1,6 +1,0 @@
-apiVersion: v2
-name: platform-operators
-description: A Helm chart for OpenShift GitOps and Service Mesh Operators
-type: application
-version: 0.1.0
-appVersion: "1.0.0"
