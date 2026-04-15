@@ -1,18 +1,33 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: platform-bootstrap
   namespace: argocd
 spec:
-  project: default
-  source:
-    repoURL: 'https://github.com/sumanthlagadapati/openshift-gitops-servicemesh.git'
-    targetRevision: HEAD
-    path: argocd/infra
-  destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: argocd
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  generators:
+    - list:
+        elements:
+          - name: cluster1
+            valuesFile: values-cluster1.yaml
+          - name: cluster2
+            valuesFile: values-cluster2.yaml
+  template:
+    metadata:
+      name: platform-bootstrap-{{name}}
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/sumanthlagadapati/openshift-gitops-servicemesh.git'
+        targetRevision: HEAD
+        path: argocd/infra
+        helm:
+          valueFiles:
+            - values.yaml
+            - '{{valuesFile}}'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

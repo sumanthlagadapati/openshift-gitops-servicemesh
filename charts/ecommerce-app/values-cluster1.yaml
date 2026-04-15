@@ -1,0 +1,15 @@
+namespace: ecommerce-cluster1
+
+services:
+  - name: frontend
+    image: hashicorp/http-echo:latest
+    port: 5678
+    args: ["-text=Welcome to the E-Commerce Storefront! (Cluster 1)"]
+  - name: productcatalog
+    image: hashicorp/http-echo:latest
+    port: 5678
+    args: ["-text=Product Catalog Service: 100 items available (Cluster 1)"]
+  - name: cart
+    image: hashicorp/http-echo:latest
+    port: 5678
+    args: ["-text=Cart Service: Your cart is currently empty (Cluster 1)"]
