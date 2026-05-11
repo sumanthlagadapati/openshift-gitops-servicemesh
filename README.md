@@ -67,3 +67,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ```
 
 Once logged in, you will see ArgoCD automatically deploying Istio and your E-Commerce application based on the Sync Waves!
+
+
+
+
+
+## 👨‍💻 Author
+**Sumanth Lagadapati**  
